@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:new_app_secondmain/app/views/new_product_screen.dart';
 import '/app/widgets/custom_bottom_nav_bar.dart';
+import '/app/views/new_product_screen.dart';  
 
 void main() => runApp(MyApp());
 
@@ -7,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'SecondVie',
       home: MyHomePage(),
     );
   }
@@ -25,22 +27,29 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _selectedIndex = index;
     });
+    if (index == 2) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) => NewItemScreen()));  // Affiche NewItemScreen
+    }
   }
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: _selectedIndex == 0 || _selectedIndex == 1 ? _buildSearchBar() : Text('SecondVie'),
+        title: _selectedIndex == 0 || _selectedIndex == 1
+            ? _buildSearchBar()
+            : const Text('SecondVie'),
       ),
       body: Center(
-        child: Text('Content for Tab $_selectedIndex', style: TextStyle(fontSize: 30)),
+        child: Text('Content for Tab $_selectedIndex', style: const TextStyle(fontSize: 30)),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _onItemTapped(2),
-        child: Icon(Icons.add),
-        elevation: 2.0,
-      ),
+      floatingActionButton: _selectedIndex == 2
+          ? null
+          : FloatingActionButton(
+              onPressed: () => _onItemTapped(2),
+              child: const Icon(Icons.add),
+              elevation: 2.0,
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: CustomBottomNavBar(
         selectedIndex: _selectedIndex,
@@ -50,12 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildSearchBar() {
-    return TextField(
+    return const TextField(
       decoration: InputDecoration(
-        hintText: 'Search...',
+        hintText: 'Rechercher...',
         prefixIcon: Icon(Icons.search),
         border: InputBorder.none,
       ),
     );
   }
 }
+
+// Assurez-vous que le fichier new_item_screen.dart est bien défini avec la classe NewItemScreen.

@@ -45,6 +45,30 @@ class NewItemScreen extends StatelessWidget {
             onChanged: (value) {
               // TODO: stocker la valeur sélectionnée
             },
+            decoration: const InputDecoration(labelText: 'Catégorie'),
+          ),
+          DropdownButtonFormField<String>(
+            items: ['T-Shirt', 'Pantalon', 'Pull']
+                .map((label) => DropdownMenuItem(
+                      value: label,
+                      child: Text(label),
+                    ))
+                .toList(),
+            onChanged: (value) {
+              // TODO: stocker la valeur sélectionnée
+            },
+            decoration: const InputDecoration(labelText: 'État'),
+          ),
+          DropdownButtonFormField<String>(
+            items: ['Neuf avec étiquettes', 'Bon état', 'Abimé']
+                .map((label) => DropdownMenuItem(
+                      value: label,
+                      child: Text(label),
+                    ))
+                .toList(),
+            onChanged: (value) {
+              // TODO: stocker la valeur sélectionnée
+            },
             decoration: const InputDecoration(labelText: 'Marque'),
           ),
           // ... Ajouter d'autres champs ici ...

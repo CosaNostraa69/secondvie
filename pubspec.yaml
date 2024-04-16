@@ -30,12 +30,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^1.10.0       # Nécessaire pour utiliser Firebase
-  firebase_auth: ^3.3.4        # Authentification avec Firebase
-  cloud_firestore: ^3.1.5      # Base de données Firestore
+  image_picker: ^0.8.5+3
+  firebase_core: "^2.29.0"
+  firebase_auth: "^4.19.1"
+  cloud_firestore: "^4.16.1"
   provider: ^6.0.2             # Gestion de l'état
   flutter_stripe: ^2.0.3       # Intégration de Stripe pour les paiements
-  image_picker: ^0.8.5         # Sélectionner des images depuis la galerie ou la caméra
   flutter_bloc: ^8.0.1         # Pour utiliser BLoC pattern
   http: ^0.13.4                # Pour faire des requêtes HTTP
 

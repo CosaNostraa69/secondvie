@@ -1,7 +1,26 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class NewItemScreen extends StatelessWidget {
+class NewItemScreen extends StatefulWidget {
   const NewItemScreen({super.key});
+
+  @override
+  _NewItemScreenState createState() => _NewItemScreenState();
+}
+
+class _NewItemScreenState extends State<NewItemScreen> {
+  final ImagePicker _picker = ImagePicker();
+  List<XFile>? _images = [];
+
+  Future<void> _pickImage() async {
+    final List<XFile>? selectedImages = await _picker.pickMultiImage();
+    if (selectedImages != null && selectedImages.isNotEmpty) {
+      setState(() {
+        _images = selectedImages;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +36,25 @@ class NewItemScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         children: <Widget>[
           GestureDetector(
-            onTap: () {
-              // TODO: Ajouter la logique pour charger des images
-            },
+            onTap: _pickImage,
             child: Container(
               height: 150,
               color: Colors.grey[200],
-              child: Icon(
-                Icons.camera_alt,
-                color: Colors.grey[600],
-              ),
+              child: _images!.isEmpty
+                  ? const Icon(
+                      Icons.camera_alt,
+                      color: Colors.grey,
+                    )
+                  : ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: _images!.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.file(File(_images![index].path)),
+                        );
+                      },
+                    ),
             ),
           ),
           TextFormField(
@@ -42,10 +70,8 @@ class NewItemScreen extends StatelessWidget {
                       child: Text(label),
                     ))
                 .toList(),
-            onChanged: (value) {
-              // TODO: stocker la valeur sélectionnée
-            },
-            decoration: const InputDecoration(labelText: 'Catégorie'),
+            onChanged: (value) {},
+            decoration: const InputDecoration(labelText: 'Marque'),
           ),
           DropdownButtonFormField<String>(
             items: ['T-Shirt', 'Pantalon', 'Pull']
@@ -54,10 +80,8 @@ class NewItemScreen extends StatelessWidget {
                       child: Text(label),
                     ))
                 .toList(),
-            onChanged: (value) {
-              // TODO: stocker la valeur sélectionnée
-            },
-            decoration: const InputDecoration(labelText: 'État'),
+            onChanged: (value) {},
+            decoration: const InputDecoration(labelText: 'Catégorie'),
           ),
           DropdownButtonFormField<String>(
             items: ['Neuf avec étiquettes', 'Bon état', 'Abimé']
@@ -66,12 +90,9 @@ class NewItemScreen extends StatelessWidget {
                       child: Text(label),
                     ))
                 .toList(),
-            onChanged: (value) {
-              // TODO: stocker la valeur sélectionnée
-            },
-            decoration: const InputDecoration(labelText: 'Marque'),
+            onChanged: (value) {},
+            decoration: const InputDecoration(labelText: 'État'),
           ),
-          // ... Ajouter d'autres champs ici ...
           ElevatedButton(
             child: const Text('Publier'),
             onPressed: () {

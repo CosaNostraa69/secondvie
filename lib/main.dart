@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_app_secondmain/app/views/new_product_screen.dart';
 import '/app/widgets/custom_bottom_nav_bar.dart';
-import '/app/views/new_product_screen.dart';  
+import '/app/views/new_product_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,6 +10,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'SecondVie',
+      theme: ThemeData(
+        brightness: Brightness.dark, // Thème sombre global
+        primaryColor: Colors.grey[900],
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.white, // Couleur du bouton FloatingActionButton
+          foregroundColor: Colors.black, // Couleur de l'icône
+        ),
+        appBarTheme: AppBarTheme(
+          color: Colors.black, // Couleur de la AppBar
+          iconTheme: IconThemeData(color: Colors.white), // Couleur des icônes de la AppBar
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.black, // Couleur de fond de la BottomNavigationBar
+          selectedItemColor: Colors.white, // Couleur de l'icône sélectionnée
+          unselectedItemColor: Colors.grey[700], // Couleur des icônes non sélectionnées
+        ),
+      ),
       home: MyHomePage(),
     );
   }
@@ -49,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => _onItemTapped(2),
               child: const Icon(Icons.add),
               elevation: 2.0,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)), // Forme arrondie
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: CustomBottomNavBar(
@@ -69,4 +87,3 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-// Assurez-vous que le fichier new_item_screen.dart est bien défini avec la classe NewItemScreen.

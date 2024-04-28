@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Category {
   final String id;
   final String name;
@@ -7,17 +5,17 @@ class Category {
 
   Category({required this.id, required this.name, required this.subCategories});
 
-  factory Category.fromFirestore(DocumentSnapshot doc) {
-    Map data = doc.data() as Map;
+  factory Category.fromMap(Map<String, dynamic> map) {
     return Category(
-      id: doc.id,
-      name: data['name'],
-      subCategories: List<String>.from(data['subCategories']),
+      id: map['id'],
+      name: map['name'],
+      subCategories: List<String>.from(map['subCategories']),
     );
   }
 
-  Map<String, dynamic> toFirestore() {
+  Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'name': name,
       'subCategories': subCategories,
     };

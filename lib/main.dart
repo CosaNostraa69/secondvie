@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:new_app_secondmain/app/views/new_product_screen.dart';
+import 'package:new_app_secondmain/app/views/add_product_screen.dart';
 import '/app/widgets/custom_bottom_nav_bar.dart';
-import '/app/views/new_product_screen.dart';
+import 'app/models/category.dart';
 import 'app/views/search_screen.dart';
 import 'app/views/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() => runApp(MyApp());
+
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -44,8 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _screens = [
     HomeScreen(),
-    SearchScreen(categories: []),
-    NewItemScreen(),
+    SearchScreen(categories: const [], category: Category(name: '', id: '', subCategories: [])),
+    AddProductScreen(),
   ];
 
   void _onItemTapped(int index) {

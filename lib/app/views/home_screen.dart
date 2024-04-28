@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/firebase_service.dart';
 import '../models/category.dart';
-import 'category_screen.dart';
+import 'search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final FirebaseService _firebaseService = FirebaseService();
@@ -9,7 +9,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Accueil')),
       body: FutureBuilder<List<Category>>(
         future: _firebaseService.getCategories(),
         builder: (context, snapshot) {
@@ -24,7 +23,7 @@ class HomeScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CategoryScreen(category: category)),
+                      MaterialPageRoute(builder: (context) => SearchScreen(category: category, categories: [],)),
                     );
                   },
                 );

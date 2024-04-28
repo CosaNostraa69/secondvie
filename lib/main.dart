@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:new_app_secondmain/app/views/new_product_screen.dart';
 import '/app/widgets/custom_bottom_nav_bar.dart';
 import '/app/views/new_product_screen.dart';
+import 'app/views/search_screen.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -40,14 +42,22 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    if (index == 2) {
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => NewItemScreen()));  // Affiche NewItemScreen
-    }
+void _onItemTapped(int index) {
+  setState(() {
+    _selectedIndex = index;
+  });
+  switch (index) {
+    case 1:
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) => SearchScreen(categories: [],)));  // Navigue vers SearchScreen
+      break;
+    case 2:
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) => NewItemScreen()));  // Navigue vers NewItemScreen
+      break;
+    default:
+      break;
   }
+}
+
 
   @override
   Widget build(BuildContext context) {

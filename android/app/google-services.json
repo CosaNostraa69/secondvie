@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "60110180073",
+    "project_id": "secondevie-a40f0",
+    "storage_bucket": "secondevie-a40f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60110180073:android:210b5ff73a6b551bf06a78",
+        "android_client_info": {
+          "package_name": "com.example.new_app_secondmain"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZHcdm0-aWiSdvGh80RbRatVnYmFcxm_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
